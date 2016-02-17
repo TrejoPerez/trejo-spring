@@ -5,14 +5,20 @@
  */
 package trejo.sp;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  *
  * @author campitos
  */
 @SpringBootApplication
-@S
+@EnableAutoConfiguration
+@ComponentScan
+
+
 public class TrejoSp {
 
     /**
@@ -20,6 +26,7 @@ public class TrejoSp {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        SpringApplication.run(TrejoSp.class,args);
     }
     
 }
