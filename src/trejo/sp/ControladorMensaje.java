@@ -23,7 +23,7 @@ public class ControladorMensaje {
     //Por cada entidad se genera un controlador
     @RequestMapping(value="/mensaje",method=RequestMethod.GET,headers={"Accept=application/json"})
     @ResponseBody String buscartodos() throws Exception{
-        //Esto va a ser obtenido atraves del DAOMensaje y su metodo obtener todos
+        /*Esto va a ser obtenido atraves del DAOMensaje y su metodo obtener todos
         Mensaje m1 = new Mensaje();
         m1.setTitulo("Springboot");
         m1.setCuerpo("Springboot es la neta del planeta");
@@ -45,10 +45,9 @@ public class ControladorMensaje {
         
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(arreglo);
-                
-        
-        
-        
-        
+        */
+        DAOMensaje dao = new DAOMensaje();
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(dao.buscarTodos());
     }
 }
