@@ -8,6 +8,7 @@ package trejo.sp;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,5 +50,12 @@ public class ControladorMensaje {
         DAOMensaje dao = new DAOMensaje();
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(dao.buscarTodos());
+    }
+    @RequestMapping(value="/mensaje/{id}", method=RequestMethod.GET, headers = {"Accept=application/json"})
+    @ResponseBody String buscarPorId(@PathVariable Integer id)throws Exception{
+        DAOMensaje dao = new DAOMensaje();
+        Mensaje m = dao.buscarPorId(id);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(m);
     }
 }
