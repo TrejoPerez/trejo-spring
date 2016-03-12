@@ -7,6 +7,7 @@ package trejo.sp;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //uri
 @RequestMapping("/")
 public class ControladorMensaje {
-    //Por cada entidad se genera un controlador
+    /*Por cada entidad se genera un controlador
     @RequestMapping(value="/mensaje",method=RequestMethod.GET,headers={"Accept=application/json"})
     @ResponseBody String buscartodos() throws Exception{
         /*Esto va a ser obtenido atraves del DAOMensaje y su metodo obtener todos
@@ -46,16 +47,24 @@ public class ControladorMensaje {
         
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(arreglo);
-        */
+        
         DAOMensaje dao = new DAOMensaje();
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(dao.buscarTodos());
     }
+*/
     @RequestMapping(value="/mensaje/{id}", method=RequestMethod.GET, headers = {"Accept=application/json"})
     @ResponseBody String buscarPorId(@PathVariable Integer id)throws Exception{
         DAOMensaje dao = new DAOMensaje();
         Mensaje m = dao.buscarPorId(id);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(m);
+    }
+    @Autowired ComportamientoMensaje miServicioMensaje;
+    @RequestMapping(value="/mensaje",method=RequestMethod.GET,headers={"Accept=application/json"})
+    @ResponseBody String buscartodosp() throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Mensaje> mensaje = miServicioMensaje.leerTodosLosMensajes();
+        return mapper.writeValueAsString(mensaje);
     }
 }

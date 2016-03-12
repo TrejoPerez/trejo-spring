@@ -11,7 +11,7 @@ package pato;
  */
 public class MainPato {
     public static void main(String[] args) {
-      Pato p = new Pato(new PatoIngles());
+      Pato p = new Pato(new PatoCaricatura());
       p.mostrarRuido();  
     }
 }
