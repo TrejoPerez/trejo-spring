@@ -5,10 +5,18 @@
  */
 package trejo.sp;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author T-101
  */
-public class MensajeMySql {
+public class MensajeMySql extends Mensaje implements  ComportamientoMensaje{
+
+    @Override
+    public ArrayList<Mensaje> leerTodosLosMensajes() {
+//Aqui va el dao    
+        //DAOMensaje
+    }
     
 }
