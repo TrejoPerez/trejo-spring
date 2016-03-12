@@ -7,20 +7,13 @@ package pato;
 
 /**
  *
- * @author campitos
+ * @author root
  */
-public class Pato{
-    private IPato p;
+public class PatoCaricatura implements IPato{
 
-    public Pato(IPato p) {
-        this.p = p;
+    @Override
+    public void hacerRuoido() {
+        System.out.println("Yo no hago ruido");
     }
-    public void mostrarRuido(){
-        p.hacerRuoido();
-    }
-
-    
-    
-    
     
 }

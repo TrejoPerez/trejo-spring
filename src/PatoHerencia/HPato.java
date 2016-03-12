@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pato;
+package PatoHerencia;
 
 /**
  *
- * @author campitos
+ * @author root
  */
-public class MainPato {
-    public static void main(String[] args) {
-      Pato p = new Pato(new PatoIngles());
-      p.mostrarRuido();  
+public class HPato {
+    public void hacerRuido(){
+        
     }
 }

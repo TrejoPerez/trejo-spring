@@ -7,7 +7,7 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=convertToNull</property>
     <!--Borrar las lineas de password si usas otra PC-->
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.connection.password">password</property>
     <mapping class="trejo.sp.Mensaje"></mapping>
 
   </session-factory>

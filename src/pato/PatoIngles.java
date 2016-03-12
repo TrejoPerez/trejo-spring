@@ -7,20 +7,14 @@ package pato;
 
 /**
  *
- * @author campitos
+ * @author root
  */
-public class Pato{
-    private IPato p;
+public class PatoIngles implements IPato{
 
-    public Pato(IPato p) {
-        this.p = p;
+    @Override
+    public void hacerRuoido() {
+        System.out.println("Soy un pato ingles");
     }
-    public void mostrarRuido(){
-        p.hacerRuoido();
-    }
-
-    
-    
     
     
 }

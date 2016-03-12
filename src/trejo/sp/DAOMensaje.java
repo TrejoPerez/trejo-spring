@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -42,10 +42,9 @@ public class DAOMensaje {
     2. BUSCAR TODOS
     */
     ArrayList<Mensaje> buscarTodos() throws Exception{
-  ArrayList<Mensaje>objs=  (ArrayList<Mensaje>) session.createCriteria(Mensaje.class).list();
-  cerrarTodo();
-  
-    return objs;
+        ArrayList<Mensaje>objs=  (ArrayList<Mensaje>) session.createCriteria(Mensaje.class).list();
+        cerrarTodo();
+        return objs;
     }
     /*
    3.  BUSCAR POR ID

@@ -7,20 +7,9 @@ package pato;
 
 /**
  *
- * @author campitos
+ * @author root
  */
-public class Pato{
-    private IPato p;
-
-    public Pato(IPato p) {
-        this.p = p;
-    }
-    public void mostrarRuido(){
-        p.hacerRuoido();
-    }
-
-    
-    
-    
+interface IPato {
+    public void hacerRuoido();
     
 }
