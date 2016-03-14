@@ -5,6 +5,7 @@
  */
 package trejo.sp;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 //Aqui se mapea la tabla
 @Table(name = "MENSAJE")
-public class Mensaje {
+public class Mensaje implements Serializable{
     //Se va a producir un servicio para angular
     @Column(name = "titulo")
     private String titulo;

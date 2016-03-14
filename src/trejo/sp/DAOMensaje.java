@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
  */
 
 public class DAOMensaje {
+    
     public  SessionFactory sessionFactory;
     public  Session session;
     public  Transaction transaction;

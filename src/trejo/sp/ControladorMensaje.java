@@ -60,10 +60,12 @@ public class ControladorMensaje {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(m);
     }
+    
     @Autowired ComportamientoMensaje miServicioMensaje;
     @RequestMapping(value="/mensaje",method=RequestMethod.GET,headers={"Accept=application/json"})
     @ResponseBody String buscartodosp() throws Exception{
         ObjectMapper mapper = new ObjectMapper();
+        
         ArrayList<Mensaje> mensaje = miServicioMensaje.leerTodosLosMensajes();
         return mapper.writeValueAsString(mensaje);
     }
