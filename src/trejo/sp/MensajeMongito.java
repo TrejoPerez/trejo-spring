@@ -17,5 +17,10 @@ public class MensajeMongito implements ComportamientoMensaje {
     public ArrayList<Mensaje> leerTodosLosMensajes() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void guardar(Mensaje m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

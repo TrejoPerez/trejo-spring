@@ -35,5 +35,11 @@ public class MensajeMySql extends Mensaje implements  ComportamientoMensaje{
         cerrarTodo();
         return m;
     }
+
+    @Override
+    public void guardar(Mensaje m) {
+        session.save(m);
+        cerrarTodo();
+    }
     
 }

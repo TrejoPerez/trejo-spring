@@ -8,6 +8,7 @@ package trejo.sp;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class MensajeSerializado extends Mensaje implements ComportamientoMensaje
             ObjectInputStream ois = new ObjectInputStream(fis);
             m = (ArrayList<Mensaje>) ois.readObject();
             
-        }catch(Exception e ){
+        }catch(IOException | ClassNotFoundException e ){
             System.out.println("hubo un error al leer el mensaje"+e.getMessage());
         }
         return m;
@@ -73,5 +74,10 @@ public class MensajeSerializado extends Mensaje implements ComportamientoMensaje
         System.out.println(m.leerTodosLosMensajes().get(2).getCuerpo());
         
     }*/
+
+    @Override
+    public void guardar(Mensaje m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
