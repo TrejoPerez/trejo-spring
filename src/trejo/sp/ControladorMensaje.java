@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //uri
 @RequestMapping("/")
 public class ControladorMensaje {
+    @Autowired ComportamientoMensaje miServicioMensaje;
     /*Por cada entidad se genera un controlador
     @RequestMapping(value="/mensaje",method=RequestMethod.GET,headers={"Accept=application/json"})
     @ResponseBody String buscartodos() throws Exception{
@@ -62,15 +63,26 @@ public class ControladorMensaje {
         return mapper.writeValueAsString(m);
     }
     @CrossOrigin
-    @RequestMapping(value = "/menshje/{titulo}/{cuerpo}", method = RequestMethod.POST, headers ={"Accetpt=text/html"})
+    @RequestMapping(value = "/mensaje/{titulo}/{cuerpo}", method = RequestMethod.POST, headers ={"Accept=text/html"})
     @ResponseBody String guardarMensaje(@PathVariable String titulo, @PathVariable String cuerpo) throws Exception{
         Mensaje m= new Mensaje();
         m.setTitulo(titulo);
         m.setCuerpo(cuerpo);
         miServicioMensaje.guardar(m);
-        return "Mensaje gusrdado con exito";
+        return "Mensaje guardado con exito";
     }
-    @Autowired ComportamientoMensaje miServicioMensaje;
+    
+    @CrossOrigin
+    @RequestMapping(value = "/mensaje/{id}",method = RequestMethod.DELETE, headers = {"Accept=text/html"})
+    @ResponseBody String borrarMensaje(@PathVariable Integer i) throws Exception{
+        Mensaje m = new Mensaje();
+        m.setId(i);
+        miServicioMensaje.borrar(i);
+        return "Mensaje borrado con exito";
+    }
+    
+       
+    
     @RequestMapping(value="/mensaje",method=RequestMethod.GET,headers={"Accept=application/json"})
     @ResponseBody String buscartodosp() throws Exception{
         ObjectMapper mapper = new ObjectMapper();

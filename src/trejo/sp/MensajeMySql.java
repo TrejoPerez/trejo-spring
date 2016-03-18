@@ -6,6 +6,8 @@
 package trejo.sp;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -15,31 +17,39 @@ import org.hibernate.Transaction;
  * @author T-101
  */
 public class MensajeMySql extends Mensaje implements  ComportamientoMensaje{
-    public SessionFactory sessionFactory;
-    public Session session;
-    public Transaction transaction;
-
-    public MensajeMySql() {
-        sessionFactory = HibernateUtilidades.getSessionFactory();
-        session = sessionFactory.openSession();
-        transaction = session.beginTransaction();
-    }
-    public void cerrarTodo(){
-        transaction.commit();
-        session.close();
-    }
+    
     @Override
     public ArrayList<Mensaje> leerTodosLosMensajes() {
 //Aqui va el DAOMensaje
-        ArrayList<Mensaje> m = (ArrayList<Mensaje>) session.createCriteria(Mensaje.class).list();
-        cerrarTodo();
-        return m;
+        DAOMensaje dao = new DAOMensaje();
+        ArrayList<Mensaje> mensajes = new ArrayList<>();
+        try {
+            mensajes = dao.buscarTodos();
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mensajes;
     }
 
     @Override
     public void guardar(Mensaje m) {
-        session.save(m);
-        cerrarTodo();
+        DAOMensaje dao = new DAOMensaje();
+        try {
+            dao.guardar(m);
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+    }
+
+    @Override
+    public void borrar(Integer i) {
+        DAOMensaje dao = new DAOMensaje();
+        try {
+            dao.borrar(i);
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
