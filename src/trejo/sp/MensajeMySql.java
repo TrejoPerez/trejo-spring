@@ -43,13 +43,24 @@ public class MensajeMySql extends Mensaje implements  ComportamientoMensaje{
     }
 
     @Override
-    public void borrar(Integer i) {
+    public void borrar(Integer id) {
         DAOMensaje dao = new DAOMensaje();
         try {
-            dao.borrar(i);
+            dao.borrar(id);
         } catch (Exception ex) {
             Logger.getLogger(MensajeMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void actualizar(Mensaje m) {
+        DAOMensaje dao = new DAOMensaje();
+        try {
+            dao.actualizar(m);
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }

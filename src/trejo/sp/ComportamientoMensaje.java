@@ -15,4 +15,5 @@ public interface ComportamientoMensaje {
     ArrayList<Mensaje>leerTodosLosMensajes();
     public void guardar (Mensaje m);
     public void borrar(Integer i);
+    public void actualizar(Mensaje m);
 }

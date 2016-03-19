@@ -73,15 +73,23 @@ public class ControladorMensaje {
     }
     
     @CrossOrigin
-    @RequestMapping(value = "/mensaje/{id}",method = RequestMethod.DELETE, headers = {"Accept=text/html"})
-    @ResponseBody String borrarMensaje(@PathVariable Integer i) throws Exception{
-        Mensaje m = new Mensaje();
-        m.setId(i);
-        miServicioMensaje.borrar(i);
-        return "Mensaje borrado con exito";
-    }
+    @RequestMapping(value = "/mensajep/{id}", method = RequestMethod.POST, headers ={"Accept=text/html"})
+    @ResponseBody String borrarMensaje(@PathVariable Integer id) throws Exception{
+        miServicioMensaje.borrar(id);
+        return "Mensaje Borrado con exito";
+    }   
     
-       
+    
+    @CrossOrigin
+    @RequestMapping(value = "/mensajep/{id}/{titulo}/{cuerpo}", method = RequestMethod.POST, headers ={"Accept=text/html"})
+    @ResponseBody String actualizarMensaje(@PathVariable Integer id,@PathVariable String titulo, @PathVariable String cuerpo) throws Exception{
+        Mensaje m= new Mensaje();
+        m.setId(id);
+        m.setTitulo(titulo);
+        m.setCuerpo(cuerpo);
+        miServicioMensaje.actualizar(m);
+        return "Mensaje actualizado con exito";
+    }   
     
     @RequestMapping(value="/mensaje",method=RequestMethod.GET,headers={"Accept=application/json"})
     @ResponseBody String buscartodosp() throws Exception{

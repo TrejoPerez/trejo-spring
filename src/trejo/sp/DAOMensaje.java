@@ -42,7 +42,7 @@ public class DAOMensaje {
 /*
     2. BUSCAR TODOS
     */
-    ArrayList<Mensaje> buscarTodos() throws Exception{
+    public ArrayList<Mensaje> buscarTodos() throws Exception{
         ArrayList<Mensaje>objs=  (ArrayList<Mensaje>) session.createCriteria(Mensaje.class).list();
         cerrarTodo();
         return objs;
@@ -63,9 +63,6 @@ public class DAOMensaje {
     4. ACTUALIZAR
     */
     public void actualizar(Mensaje c)throws Exception{
-        
-
-       
          session.update(c);
          cerrarTodo();
         
@@ -73,10 +70,12 @@ public class DAOMensaje {
     /*
     5. BORRAR
     */
-    public void   borrar(Integer id)throws Exception{
-        
+    public void borrar(Integer id)throws Exception{
         Mensaje c=new Mensaje();
             c.setId(id); 
+            c.getId();
+            c.getCuerpo();
+            c.getTitulo();
             session.delete(c);
             cerrarTodo();
          
