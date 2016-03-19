@@ -62,6 +62,14 @@ public class ControladorMensaje {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(m);
     }
+    @RequestMapping(value = "/mensajes/{id}", method = RequestMethod.GET,headers = {"Accept=application/json"})
+    @ResponseBody String buscarIdSerializado(@PathVariable Integer id) throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(miServicioMensaje.leerTodosLosMensajes().get(id));
+    }
+    
+    
+    
     @CrossOrigin
     @RequestMapping(value = "/mensaje/{titulo}/{cuerpo}", method = RequestMethod.POST, headers ={"Accept=text/html"})
     @ResponseBody String guardarMensaje(@PathVariable String titulo, @PathVariable String cuerpo) throws Exception{
@@ -80,6 +88,8 @@ public class ControladorMensaje {
     }   
     
     
+    
+    
     @CrossOrigin
     @RequestMapping(value = "/mensajep/{id}/{titulo}/{cuerpo}", method = RequestMethod.POST, headers ={"Accept=text/html"})
     @ResponseBody String actualizarMensaje(@PathVariable Integer id,@PathVariable String titulo, @PathVariable String cuerpo) throws Exception{
@@ -90,7 +100,6 @@ public class ControladorMensaje {
         miServicioMensaje.actualizar(m);
         return "Mensaje actualizado con exito";
     }   
-    
     @RequestMapping(value="/mensaje",method=RequestMethod.GET,headers={"Accept=application/json"})
     @ResponseBody String buscartodosp() throws Exception{
         ObjectMapper mapper = new ObjectMapper();
@@ -98,4 +107,5 @@ public class ControladorMensaje {
         ArrayList<Mensaje> mensaje = miServicioMensaje.leerTodosLosMensajes();
         return mapper.writeValueAsString(mensaje);
     }
+    
 }

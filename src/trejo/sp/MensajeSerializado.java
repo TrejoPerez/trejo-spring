@@ -7,49 +7,26 @@ package trejo.sp;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author T-101
  */
 public class MensajeSerializado extends Mensaje implements ComportamientoMensaje{
-    public void guardarUsuario(Mensaje m) throws Exception{
-        ArrayList<Mensaje> mensaje= new ArrayList();
-        File f = new File("Mensajes");
-        try{
-            if(f.exists()) mensaje = leerTodosLosMensajes();
-            FileOutputStream fos = new FileOutputStream(f);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            mensaje.add(m);
-            oos.writeObject(mensaje);
-            System.out.println("Mensaje Guardado");
-        }catch(Exception e){
-            System.out.println("Hubo un error al guardar el mensaje");
-        }
-    }
+    public static final String archivo="Mensajes";
     @Override
     public ArrayList<Mensaje> leerTodosLosMensajes() {
-        /*
-        Mensaje m1 = new Mensaje();
-        m1.setTitulo("primer mensaje Serializado");
-        m1.setCuerpo("Cuerpo del serializado");
-        
-        Mensaje m2 = new Mensaje();
-        m2.setTitulo("Segundo mensaje Serializado");
-        m2.setCuerpo("Puerca del serializado");
-        ArrayList<Mensaje> mensajitos = new ArrayList();
-        mensajitos.add(m1);
-        mensajitos.add(m2);
-        return mensajitos;
-        */
         ArrayList<Mensaje> m = new ArrayList();
         try{
-            File f = new File("Mensajes");
+            File f = new File(archivo);
             FileInputStream fis = new FileInputStream(f);
             ObjectInputStream ois = new ObjectInputStream(fis);
             m = (ArrayList<Mensaje>) ois.readObject();
@@ -62,27 +39,40 @@ public class MensajeSerializado extends Mensaje implements ComportamientoMensaje
     public static void main(String[] args) throws Exception {
         MensajeSerializado m = new MensajeSerializado();
         Mensaje men = new Mensaje();
-        ArrayList<Mensaje> mensajito = new ArrayList();
-        men.setCuerpo("Mensajes serializados");
+        ArrayList<Mensaje> mensajito = m.leerTodosLosMensajes();
+        //men.setCuerpo("Mensajes serializados");
         men.setId(2);
-        men.setTitulo(" serializado");
+        //men.setTitulo(" serializado");
         
         //mensajito.add(men);
         
         //m.guardarUsuario(men);
+        //mensajito.remove(m);
         
-        System.out.println(m.leerTodosLosMensajes().get(2).getCuerpo());
-        
+        System.out.println(m.leerTodosLosMensajes().get(2).getTitulo());
+        //System.out.println("Removido");
     }*/
-
     @Override
     public void guardar(Mensaje m) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Mensaje> mensaje = new ArrayList<>();
+        File f = new File(archivo);
+        try {
+            if(f.exists()) mensaje = leerTodosLosMensajes();
+            FileOutputStream fis = new FileOutputStream(f);
+            ObjectOutputStream oos = new ObjectOutputStream(fis);
+            mensaje.add(m);
+            oos.writeObject(mensaje);
+        } catch (Exception e) {
+            Logger.getLogger(MensajeSerializado.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
     }
 
     @Override
-    public void borrar(Integer i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void borrar(Integer id) {
+        ArrayList<Mensaje> mensajes = leerTodosLosMensajes();
+        mensajes.remove(id);
+        
     }
 
     @Override
