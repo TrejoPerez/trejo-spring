@@ -16,4 +16,5 @@ public interface ComportamientoMensaje {
     public void guardar (Mensaje m);
     public void borrar(Integer i);
     public void actualizar(Mensaje m);
+    public Mensaje buscarId(Integer id);
 }

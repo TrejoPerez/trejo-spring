@@ -33,13 +33,16 @@ public class MensajeMySql extends Mensaje implements  ComportamientoMensaje{
 
     @Override
     public void guardar(Mensaje m) {
+        
         DAOMensaje dao = new DAOMensaje();
         try {
             dao.guardar(m);
+            
         } catch (Exception ex) {
             Logger.getLogger(MensajeMySql.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error al guardar");
         }
-                
+        
     }
 
     @Override
@@ -47,9 +50,13 @@ public class MensajeMySql extends Mensaje implements  ComportamientoMensaje{
         DAOMensaje dao = new DAOMensaje();
         try {
             dao.borrar(id);
+            
         } catch (Exception ex) {
             Logger.getLogger(MensajeMySql.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error al borrar");
+            
         }
+        
     }
 
     @Override
@@ -57,10 +64,24 @@ public class MensajeMySql extends Mensaje implements  ComportamientoMensaje{
         DAOMensaje dao = new DAOMensaje();
         try {
             dao.actualizar(m);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMySql.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error al actualizar");
+        }
+        
+    }
+
+    @Override
+    public Mensaje buscarId(Integer id) {
+        Mensaje m = new Mensaje();
+        DAOMensaje dao = new DAOMensaje();
+        try {
+             m=dao.buscarPorId(id);
         } catch (Exception ex) {
             Logger.getLogger(MensajeMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        return m;
     }
     
 }

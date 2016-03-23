@@ -54,7 +54,7 @@ public class ControladorMensaje {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(dao.buscarTodos());
     }
-*/
+
     @RequestMapping(value="/mensaje/{id}", method=RequestMethod.GET, headers = {"Accept=application/json"})
     @ResponseBody String buscarPorId(@PathVariable Integer id)throws Exception{
         DAOMensaje dao = new DAOMensaje();
@@ -62,10 +62,11 @@ public class ControladorMensaje {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(m);
     }
+*/
     @RequestMapping(value = "/mensajes/{id}", method = RequestMethod.GET,headers = {"Accept=application/json"})
-    @ResponseBody String buscarIdSerializado(@PathVariable Integer id) throws Exception{
+    @ResponseBody String buscarIdMensaje(@PathVariable Integer id) throws Exception{
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(miServicioMensaje.leerTodosLosMensajes().get(id));
+        return mapper.writeValueAsString(miServicioMensaje.buscarId(id));
     }
     
     
@@ -79,17 +80,13 @@ public class ControladorMensaje {
         miServicioMensaje.guardar(m);
         return "Mensaje guardado con exito";
     }
-    
+    // TODO Error al hacerlo con RequesMethod.DELETE
     @CrossOrigin
     @RequestMapping(value = "/mensajep/{id}", method = RequestMethod.POST, headers ={"Accept=text/html"})
     @ResponseBody String borrarMensaje(@PathVariable Integer id) throws Exception{
         miServicioMensaje.borrar(id);
         return "Mensaje Borrado con exito";
     }   
-    
-    
-    
-    
     @CrossOrigin
     @RequestMapping(value = "/mensajep/{id}/{titulo}/{cuerpo}", method = RequestMethod.POST, headers ={"Accept=text/html"})
     @ResponseBody String actualizarMensaje(@PathVariable Integer id,@PathVariable String titulo, @PathVariable String cuerpo) throws Exception{
@@ -101,9 +98,8 @@ public class ControladorMensaje {
         return "Mensaje actualizado con exito";
     }   
     @RequestMapping(value="/mensaje",method=RequestMethod.GET,headers={"Accept=application/json"})
-    @ResponseBody String buscartodosp() throws Exception{
+    @ResponseBody String buscartodos() throws Exception{
         ObjectMapper mapper = new ObjectMapper();
-        
         ArrayList<Mensaje> mensaje = miServicioMensaje.leerTodosLosMensajes();
         return mapper.writeValueAsString(mensaje);
     }
