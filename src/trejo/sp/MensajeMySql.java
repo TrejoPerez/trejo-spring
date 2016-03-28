@@ -33,7 +33,6 @@ public class MensajeMySql extends Mensaje implements  ComportamientoMensaje{
 
     @Override
     public void guardar(Mensaje m) {
-        
         DAOMensaje dao = new DAOMensaje();
         try {
             dao.guardar(m);
