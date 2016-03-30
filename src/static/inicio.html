@@ -16,6 +16,7 @@ and open the template in the editor.
             function($scope,$http){
                 //Aqui empieza la logica de Js con angular
                 console.log('mi primer controlador en angular');
+                $scope.bienvenido="bienvenido a angular";
             }).controller('ctrlCliente',function(){
                 
             });
@@ -24,6 +25,8 @@ and open the template in the editor.
     <body ng-app="modulito">
         <div ng-controller="ctrlMensaje">
             <h1>Pagina de inicio de mi proyecto</h1>
+            {{bienvenido}}
+            <input ng-model="bienvenido" type="text"/>
         <button class="btn btn-primary">obtener primer mensaje</button>
         </div>
         </body>
