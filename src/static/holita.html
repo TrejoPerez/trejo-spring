@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Springsito</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <script src="js/angular.js"></script>
+        <script>
+            angular.module('modulito', [])
+                    .controller('con', function ($scope, $http) {
+                        $http.get("/mensajito").success(function (datos) {
+                            console.log(datos);
+                            $scope.mensajito = datos;
+                        });
+
+                    });
+        </script>
+    </head>
+    <body ng-app="modulito">
+        <div ng-controller="con">
+            <h1>Bienvenidos</h1>
+            <button class="btn btn-success">Botoncito</button> 
+            {{mensajito}}
+        </div>
+        <table class="table-striped" >
+            <tr>
+                <td class="active">...</td>
+            </tr>
+        </table>
+    </body>
+</html>
