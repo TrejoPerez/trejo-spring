@@ -115,35 +115,5 @@ public class MensajeSerializado extends Mensaje implements ComportamientoMensaje
         m.setTitulo(mensaje.get(buscarPosicion(id)).getTitulo());
         return m;
     }
-    public static void main(String[] args) throws Exception {
-        MensajeSerializado m = new MensajeSerializado();
-        Mensaje men = null;
-        ArrayList<Mensaje> mensajito = m.leerTodosLosMensajes();
-        //men.setCuerpo("Mensajes serializados");
-        
-       m.guardar(men);
-        ArrayList<String> p = new ArrayList<>();
-        p.add("Hola");
-        p.add("Mundo");
-        //p.remove(0);
-        //System.out.println(p.get(0));
-        
-        
-        //mensajito.add(men);
-        //m.guardar(men);
-        
-        //System.out.println(m.buscarId(4).getCuerpo());
-        //men.setTitulo(" serializado");
-        
-        //mensajito.add(men);
-        
-        //m.guardarUsuario(men);
-        //mensajito.remove(m);
-      
-        
-         
-         
-    }
-    
 
 }

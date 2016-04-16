@@ -63,6 +63,7 @@ public class ControladorMensaje {
         return mapper.writeValueAsString(m);
     }
 */
+    @CrossOrigin
     @RequestMapping(value = "/mensajes/{id}", method = RequestMethod.GET,headers = {"Accept=application/json"})
     @ResponseBody String buscarIdMensaje(@PathVariable Integer id) throws Exception{
         ObjectMapper mapper = new ObjectMapper();
