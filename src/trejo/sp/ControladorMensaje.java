@@ -64,10 +64,11 @@ public class ControladorMensaje {
     }
 */
     @CrossOrigin
-    @RequestMapping(value = "/mensajes/{id}", method = RequestMethod.GET,headers = {"Accept=application/json"})
+    @RequestMapping(value = "/mensajes/{id}", method = RequestMethod.GET,headers = {"Accept=text/html"})
     @ResponseBody String buscarIdMensaje(@PathVariable Integer id) throws Exception{
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(miServicioMensaje.buscarId(id));
+        Mensaje mensaje = miServicioMensaje.buscarId(id);
+        return mapper.writeValueAsString(mensaje);
     }
     
     
@@ -83,13 +84,13 @@ public class ControladorMensaje {
     }
     // TODO Error al hacerlo con RequesMethod.DELETE
     @CrossOrigin
-    @RequestMapping(value = "/mensajep/{id}", method = RequestMethod.DELETE, headers ={"Accept=application/json"})
+    @RequestMapping(value = "/mensajep/{id}", method = RequestMethod.POST, headers ={"Accept=text/html"})
     @ResponseBody String borrarMensaje(@PathVariable Integer id) throws Exception{
         miServicioMensaje.borrar(id);
         return "Mensaje Borrado con exito";
     }   
     @CrossOrigin
-    @RequestMapping(value = "/mensajep/{id}/{titulo}/{cuerpo}", method = RequestMethod.POST, headers ={"Accept=text/html"})
+    @RequestMapping(value = "/mensajep/{id}/{titulo}/{cuerpo}", method = RequestMethod.PUT, headers ={"Accept=text/html"})
     @ResponseBody String actualizarMensaje(@PathVariable Integer id,@PathVariable String titulo, @PathVariable String cuerpo) throws Exception{
         Mensaje m= new Mensaje();
         m.setId(id);
