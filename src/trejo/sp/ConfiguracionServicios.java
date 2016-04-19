@@ -16,6 +16,6 @@ import org.springframework.context.annotation.Configuration;
 public class ConfiguracionServicios {
     @Bean
     public ComportamientoMensaje miServicioMensaje(){
-        return new MensajeMySql();
+        return new MensajeSerializado();
     }
 }
